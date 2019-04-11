@@ -21,5 +21,7 @@ import com.datastax.oss.driver.api.mapper.annotations.Mapper;
 
 @Mapper
 public interface InventoryMapper {
+  ProductDao productDao();
+
   ProductDao productDao(@DaoKeyspace CqlIdentifier keyspace);
 }
