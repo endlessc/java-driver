@@ -28,6 +28,17 @@ public interface EntityDefinition {
 
   Iterable<PropertyDefinition> getClusteringColumns();
 
+  /**
+   * @return the primary key, obtained by concatenating {@link #getPartitionKey()} and {@link
+   *     #getClusteringColumns()}, in that order.
+   */
+  default Iterable<PropertyDefinition> getPrimaryKey() {
+    return ImmutableList.<PropertyDefinition>builder()
+        .addAll(getPartitionKey())
+        .addAll(getClusteringColumns())
+        .build();
+  }
+
   Iterable<PropertyDefinition> getRegularColumns();
 
   /**
