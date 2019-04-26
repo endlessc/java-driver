@@ -13,24 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.datastax.oss.driver.mapper.model.udts;
+package com.datastax.oss.driver.api.mapper.annotations;
 
-import com.datastax.oss.driver.api.core.data.GettableByName;
-import com.datastax.oss.driver.api.mapper.annotations.Dao;
-import com.datastax.oss.driver.api.mapper.annotations.GetEntity;
-import com.datastax.oss.driver.api.mapper.annotations.Insert;
-import com.datastax.oss.driver.api.mapper.annotations.Select;
-import java.util.UUID;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-@Dao
-public interface ContainerDao {
-
-  @Select
-  Container loadByPk(UUID id);
-
-  @Insert
-  void save(Container container);
-
-  @GetEntity
-  Container get(GettableByName source);
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.CLASS)
+public @interface Select {
+  String customClause() default "";
 }
