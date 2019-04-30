@@ -117,7 +117,7 @@ public class DaoSelectMethodGenerator implements MethodGenerator {
     List<? extends VariableElement> parameters = methodElement.getParameters();
     Select selectAnnotation = methodElement.getAnnotation(Select.class);
     assert selectAnnotation != null; // otherwise we wouldn't have gotten into this class
-    String customClause = selectAnnotation.customClause();
+    String customClause = selectAnnotation.customWhereClause();
     if (customClause.isEmpty()) {
       List<TypeName> primaryKeyTypes =
           entityDefinition
@@ -214,7 +214,7 @@ public class DaoSelectMethodGenerator implements MethodGenerator {
 
   private void generateSelectRequest(
       MethodSpec.Builder methodBuilder, String requestName, String helperFieldName) {
-    String customClause = methodElement.getAnnotation(Select.class).customClause();
+    String customClause = methodElement.getAnnotation(Select.class).customWhereClause();
     if (customClause.isEmpty()) {
       methodBuilder.addStatement(
           "$T $L = $L.selectByPrimaryKey().build()",

@@ -172,7 +172,7 @@ public class DaoSelectMethodGeneratorTest extends DaoMethodGeneratorTest {
         MethodSpec.methodBuilder("select")
             .addAnnotation(
                 AnnotationSpec.builder(Select.class)
-                    .addMember("customClause", "\"WHERE a = :a AND b = :b\"")
+                    .addMember("customWhereClause", "\"WHERE a = :a AND b = :b\"")
                     .build())
             .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
             // Note that we don't validate the count, names or types of the parameters, they must

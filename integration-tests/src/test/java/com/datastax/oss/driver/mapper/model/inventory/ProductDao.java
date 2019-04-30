@@ -71,10 +71,10 @@ public interface ProductDao {
   CompletionStage<Product> findByIdAsync(UUID productId);
 
   /** Note that this relies on a SASI index. */
-  @Select(customClause = "WHERE description LIKE :searchString")
+  @Select(customWhereClause = "WHERE description LIKE :searchString")
   PagingIterable<Product> findByDescription(String searchString);
 
   /** Note that this relies on a SASI index. */
-  @Select(customClause = "WHERE description LIKE :searchString")
+  @Select(customWhereClause = "WHERE description LIKE :searchString")
   CompletionStage<MappedAsyncPagingIterable<Product>> findByDescriptionAsync(String searchString);
 }
